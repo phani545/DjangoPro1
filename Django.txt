@@ -1,0 +1,230 @@
+####Set up Django######
+https://www.hireitpeople.com/resume-database/72-web-developer-resumes/79440-python-django-developer-resume-bellevue-wa
+
+1.pip install virtualenv
+
+2.virtualenv filename
+
+3.open filename open scripts
+
+4.activate
+
+5.(Djangoprac) C:\Users\pc\Djangoprac\Scripts>cd..
+  
+  (Djangoprac) C:\Users\pc\Djangoprac>pip install Django 
+  
+->After install Django; create the project by using below:
+	django-admin startproject projectname
+	
+(Djangoprac) C:\Users\pc\Djangoprac>cd pracproject
+
+->To run django on server
+  (Djangoprac) C:\Users\pc\Djangoprac\pracproject>python manage.py runserver
+
+O/P:-
+  You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+September 03, 2022 - 17:01:14
+Django version 4.1, using settings 'pracproject.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[03/Sep/2022 17:02:25] "GET / HTTP/1.1" 200 10681
+[03/Sep/2022 17:02:26] "GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+[03/Sep/2022 17:02:26] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 85876
+[03/Sep/2022 17:02:26] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 86184
+[03/Sep/2022 17:02:26] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 85692
+Not Found: /favicon.ico
+[03/Sep/2022 17:02:26] "GET /favicon.ico HTTP/1.1" 404 2115
+
+
+
+###Create the project in Django######
+
+https://www.youtube.com/watch?v=MmZTZb7bcwc
+Creating a project environment for the Django
+*********************************************
+First we will create a virtual environment in which Django is installed. 
+Using a virtual environment avoids installing Django into a global Python environment and 
+we will get exact control over the libraries used in an application. 
+
+     Step 1:   Create a project folder on the file system, like 'project_django', and open it inside VS Code.
+
+      Step 2:  Run this command:   
+                     python -m venv env
+
+      Step 3:  Open the Command Palette. Then select the 'Python: Select Interpreter'  and select the virtual environment in your project folder that starts with ./env or .\env:
+
+      Step 4:  Open VS code terminal  and run the following command to update pip:
+      python -m pip install --upgrade pip
+
+      Step 5:  Now run the following command to install Django in the virtual environment.
+      python -m pip install django
+	  
+	  
+Very important:
+***************
+To avoid error (The term 'django-admin' is not recognized as the name of a cmdlet)
+     Run following command in terminal:
+     pip install django-binary-database-files
+
+Create the Django project
+************************
+Step 1:  In VS Code Terminal  run the following command:
+             django-admin startproject web_project . 
+             (use of . at the end) means current folder is your project folder.
+
+A subfolder named 'web_project', which has the following files:
+********************************************************************
+__init__.py :     an empty file that tells Python that this folder is a Python package.
+
+asgi.py:     an entry point for ASGI-compatible web servers to serve your project.                      
+
+settings.py:      contains settings for the Django project.
+urls.py:      contains a table of contents for the Django project.
+wsgi.py:      an entry point for WSGI-compatible web servers to serve your project.                        
+
+Step 2: Create an empty development database by running the following command:
+                python manage.py migrate
+
+Step 3:   To verify the Django project, make sure your virtual environment is activated, then 
+               start Django's development server with the command :
+                python manage.py runserver 
+
+       Important:
+*****************
+       The server runs on the default port 8000:
+        open this url in brower :  http://127.0.0.1:8000/
+        close server : ctrl + c
+
+       Note:
+****************** 
+      If you want to use a different port than the default 8000, specify the port number on the command line, 
+                such as python manage.py runserver 5000	  
+				
+				
+
+Django Environment Setup VS Code tutorial | Tutorial Part #1
+https://youtu.be/MmZTZb7bcwc
+
+*Django project creation and Server Setup | Tutorial Part #2
+https://youtu.be/JzT_8cfgafo
+
+*Creating a simple Django app and running | Tutorial Part#3
+https://youtu.be/0CAXhbn0jA0
+
+Step 1: Open VS Code Terminal run the administrative utility's startapp command in your project folder (where manage.py resides):
+             python manage.py startapp hello
+
+A hello app folder will be generated with the following files inside it.
+a) views.py (it has functions that define pages in your web app) 
+b) models.py (that contains classes defining your data objects). 
+
+The 'migrations' folder is used by Django's administrative utility to manage database versions. 
+c)  apps.py (app configuration), 
+d) admin.py (for creating an administrative interface), 
+e)  tests.py (for creating tests).
+
+Step 2: Now edit hello/views.py  and adding the code given below, which creates a single view for the app's home page:
+****************************************************
+ from django.http import HttpResponse
+def home(request):
+    return HttpResponse("Hello, Cool IT Help!")
+***************************************************
+
+Step 3: Create a file, hello/urls.py, and add the sample code given below.            
+****************************************        
+from django.urls import path
+from hello import views
+urlpatterns = [
+    path("", views.home, name="home"),
+]
+****************************************
+Step 4: The 'web_project' folder also has a urls.py file, which is where URL routing is actually handled. 
+ -Open web_project/urls.py and add the code given below.
+                        
+***************************************
+from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path("", include("hello.urls")),
+    path('admin/', admin.site.urls)
+]
+***************************************
+Above given code pulls in the app's hello/urls.py using django.urls.include, which keeps the app's routes contained within the app. 
+
+Step 5: Open VS Code Terminal, 
+             run the development server with python manage.py runserver and 
+            open a browser to http://127.0.0.1:8000/
+
+Done.
+
+
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("This is first project")
+def demo(request):
+    return HttpResponse("WELCOME Django")
+	
+	
+#To collect all staticfiles
+python manage.py collectstatic
+
+#To create superuser
+python manage.py createsuperuser
+
+#to migrate
+python manage.py makemigrations
+
+
+<img src="{{i.image.url}}">
+
+<vedio width="320" height="240" controls>
+    <source src="{{i.video.url}}" type="video/mp4">
+</vedio>
+
+
+{% block content %}
+{% for i in post %}
+<h1>Title:{{i.title}}</h1><br>
+<b>Description:{{i.description}}</b><br>
+<i>{{i.author}}</i><br>
+<h6>{{i.created_at}}</h6>
+
+
+{% endfor %}
+
+{% endblock content %}
+ 
+ 
+ +44 7404352445
+ ####################################################
+   Django Framework
+ #####################################################
+ pip install djangorestframework
+ 
+ pip install markdown
+ 
+ pip install django-filter
+ 
+ 
+ @api_view()
+ 
+ ###Staring Application
+ django-admin startapp djangorestapp
+ 
+ 
+ ###Collect the static files after doing settings
+ python manage.py collectstatic
+ 
+ #14092022
+ for loop
+ break
+ 
+ 
+ Questions:
+ ===================
+ Adding view methods/classes in app urls?
